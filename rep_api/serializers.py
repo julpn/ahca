@@ -7,4 +7,4 @@ class RepSerializer(serializers.ModelSerializer):
     permission_classes = (AllowAny,)
     class Meta:
         model = Rep
-        fields = ('state', 'district', 'killed', 'debt', 'uninsured', 'name')
+        fields = ('state', 'district', 'killed', 'debt', 'uninsured', 'first_name', 'last_name')
