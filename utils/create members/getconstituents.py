@@ -1,5 +1,6 @@
 import pandas as pd
-#from rep_api.models import Rep
+#from ahca_api.rep_api.models import Rep
+
 
 df = pd.read_csv('members.csv')
 
@@ -25,22 +26,36 @@ attributes = [
     'phone_number',
 ]
 
+reps = []
 for index, row in df.iterrows():
     args = {}
     for attribute in attributes:
-        val = str(row[attribute])
-        new_att = attribute
-        if attribute == "num_uninsured":
-            new_att = "uninsured"
-        elif attribute == "num_deaths":
-            new_att = "killed"
-            val = float(val)
-            val = int(round(val, 0))
+        try:
+            val = str(row[attribute])
+            new_att = attribute
+            if attribute == "num_uninsured":
+                new_att = "uninsured"
+                val = val.replace(',', '')
+            elif attribute == 'population':
+                val = val.replace(',', '')
+            elif attribute == "num_deaths":
+                new_att = "killed"
+                val = float(val)
+                val = int(round(val, 0))
+            elif attribute == 'district':
+                try:
+                    val = int(float(val))
+                except ValueError:
+                    continue
+        except ValueError:
+            continue
         if val == 'N':
             val = False
         if val == 'Y':
             val = True
         if val != 'nan':
             args[new_att] = val
-    print args
-    #r = Rep.objects.create(**args)
+    reps.append(args)
+
+   # r = Rep.objects.create(**args)
+print reps
