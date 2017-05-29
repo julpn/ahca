@@ -1,9 +1,9 @@
 import pandas as pd
-#import Rep model
+#from rep_api.models import Rep
 
 df = pd.read_csv('members.csv')
 
-attributes =[
+attributes = [
     'first_name',
     'last_name',
     'state',
@@ -28,6 +28,19 @@ attributes =[
 for index, row in df.iterrows():
     args = {}
     for attribute in attributes:
-        args[attribute] = row[attribute]
-    continue
+        val = str(row[attribute])
+        new_att = attribute
+        if attribute == "num_uninsured":
+            new_att = "uninsured"
+        elif attribute == "num_deaths":
+            new_att = "killed"
+            val = float(val)
+            val = int(round(val, 0))
+        if val == 'N':
+            val = False
+        if val == 'Y':
+            val = True
+        if val != 'nan':
+            args[new_att] = val
+    print args
     #r = Rep.objects.create(**args)

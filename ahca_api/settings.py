@@ -26,6 +26,7 @@ SECRET_KEY = 'lc7zn3*gw!k@0sblubb1w0=n48)h+lb_ci$kco3gi&dl04guwp'
 DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0',
+                 '127.0.0.1',
                  'ahca.herokuapp.com']
 
 
