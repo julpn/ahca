@@ -12,6 +12,7 @@ class Rep(models.Model):
     killed = models.IntegerField(null=True, blank=True)
     debt = models.IntegerField(null=True, blank=True)
     uninsured = models.IntegerField(null=True, blank=True)
+    pre_exist_premium = models.IntegerField(null=True, blank=True)
     population = models.IntegerField(null=True, blank=True)
     medicaid_expansion_state = models.BooleanField(default=False)
     swing_left_district = models.BooleanField(default=False)
