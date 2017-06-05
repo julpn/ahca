@@ -56,11 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_WHITELIST = (
-    'killsconstituents.com',
-    'localhost:8000',
-    '127.0.0.1:8000'
-)
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'ahca_api.urls'
 
